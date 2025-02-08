@@ -126,7 +126,7 @@ hotel.
 
 We add column **IsResort** in both dataset. For dataset 1, the value is 1 and the other is 0. Then we combine those dataset.
 (gambar info)
-There are 31 column contains: float64(2), int64(17), and object(13) data types.
+There are 119390 rows and 32 columns contains: float64(2), int64(17), and object(13) data types.
 ### **Feature Engineering**
 We change datetype of **Children** and make another column name **Arrival**, datetime of customer's arrival (YYYY-MM-DD) based on columns **ArrivalDateYear, ArrivalDateMonth**, and **ArrivalDateDayOfMonth**.
 ### **Exploratory Data Analysis**
