@@ -149,20 +149,26 @@ We use Standard Scaler because models that rely on distance calculations (KNN, K
 
 ## **MODELING**
 We choose K-nearest neighbor and logistic regression algorithm ro predict hotel booking cancellation.
+
 **K-Nearest Neighbor**
+
 Pros:
 - Non-parametric & Flexible
 - No Assumption on Data Distribution
 - Can detect non-linear patterns in cancellations.
+
 Cons:
 - Slower for large datasets (distance calculations increase with more data).
 - Sensitive to Feature Scaling
 - Performance drops as feature count increases (Curse of Dimensionality).
-- **Logistic Regression**
+
+**Logistic Regression**
+
 Pros:
 - Works well on large datasets with many features.
 - If the data has a clear linear relationship, LR performs effectively.
 - Doesn't require much feature selection.
+
 Cons:
 - Assumes Linear Relationship
 - Not Effective for Complex Patterns
