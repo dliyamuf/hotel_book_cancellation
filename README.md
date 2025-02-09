@@ -137,7 +137,7 @@ We change datetype of **Children** and make another column name **Arrival**, dat
 **Univariate Analysis**
 
 <p align="center">
-  <img width="450" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate1.png">
+  <img width="1350" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate1.png">
 </p>
 
 From pie chart above, we saw >60% of dataset is not canceled by customer.
