@@ -212,7 +212,7 @@ We select top 20 features based on Pearson correlation value.
 We also visualize heatmap based on Pearson correlation.
 
 <p align="center">
-  <img width="1997" height="1401" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
+  <img width="1350" height="1040" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
 </p>
 
 Drop features with correlation >0.7. Between **MarketSegment** and **DistributionChannel**, we choose **DistributionChannel** it has more correlation with **IsCanceled** feature.
