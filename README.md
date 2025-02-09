@@ -287,6 +287,5 @@ Observations:
 
 ## **CONCLUSION**
 - The number of cancellations generally follows the pattern of total bookings. Some month has spike cancellation e.g. early 2016, late 2016, and mid 2017.
-- The major factor of boking cancelation based on Pearson correlation is Reservation Status, IsResort, Deposit Type, and Lead Time.
+- The major factor of boking cancelation based on Pearson correlation is **ReservationStatus, IsResort, Deposit Type,** and **Lead Time**.
 - Based on evaluation, the best model for hotel booking cancellation prediction is KNN which has better performance to prevent misclassified status of booking (canceled or not).
-
