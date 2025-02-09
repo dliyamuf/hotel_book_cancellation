@@ -127,7 +127,7 @@ hotel.
 We add column **IsResort** in both dataset. For dataset 1, the value is 1 and the other is 0. Then we combine those dataset.
 
 <p align="center">
-  <img width="150" height="600" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/datainfo.png">
+  <img width="300" height="600" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/datainfo.png">
 </p>
 
 There are 119390 rows and 32 columns contains: float64(2), int64(17), and object(13) data types.
@@ -212,7 +212,7 @@ We select top 20 features based on Pearson correlation value.
 We also visualize heatmap based on Pearson correlation.
 
 <p align="center">
-  <img width="1800" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
+  <img width="1500" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
 </p>
 
 Drop features with correlation >0.7. Between **MarketSegment** and **DistributionChannel**, we choose **DistributionChannel** it has more correlation with **IsCanceled** feature.
