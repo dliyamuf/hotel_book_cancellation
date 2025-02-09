@@ -130,7 +130,10 @@ There are 119390 rows and 32 columns contains: float64(2), int64(17), and object
 ### **Feature Engineering**
 We change datetype of **Children** and make another column name **Arrival**, datetime of customer's arrival (YYYY-MM-DD) based on columns **ArrivalDateYear, ArrivalDateMonth**, and **ArrivalDateDayOfMonth**.
 ### **Exploratory Data Analysis**
-
+**Univariate Analysis**
+<p align="center">
+  <img width="460" height="300" src="https://picsum.photos/460/300">
+</p>
 
 ## **DATA PREPARATION**
 ### **Feature Encoding and One-hot Encoding**
@@ -175,14 +178,29 @@ Cons:
 - Sensitive to Outliers
 
 ## **EVALUATION**
-We use confusion matrix to ...
+We use confusion matrix to evaluate performance of classification model. Confusion matrix compares predicted value and actual values. The components of confusion matrix is: 
+- True Positive (TP): when model correctly predicted positive class.
+- True Negative (TN): when model correctly predicted  negative class.
+- False Positive (FP): when model misclassify positive class as negative class.
+- False Negative (FN): when model misclassify negative class as positive class.
+
+Based on those components of confusion matrix, we can calculate performance score of models:
+- Accuracy: measures the overall proportion of correct values predicted by model.
+- Recall: measures the ability of model to correctly predicted positive class.
+- Precision: measures proportion of positive prediction that are actually correct.
+- F1-score: metric to balance both recall and precision score.
+
 (cm of knn)
+
 (cm of lr)
+
 - TP for both algorithms is identical (51.90%) and TN for KNN algorithm is slightly better (48.04%) than Logistic Regression (46.75%).
 - FP for Logistic Regression algorithm (0.00%) is smaller than KNN (0.001%), but the FN is bigger (1.34% versus 0.06%). It is means that Logistic Regression algorithm tend to misclassified canceled booking as not canceled booking which can be dangerous.
 
 Comparison between KNN and Logistic Regression performance.
+
 (table)
+
 - KNN has better recall (99.88%) than Logistic Regression (97.19%), meaning it correctly identifies more high-risk cases.
 - Logistic Regression has perfect precision (100%), meaning when it predicts high risk, it's always correct, but it misclassifies more actual high-risk cases as low risk.
 - F1-score is slightly higher for KNN (99.93%) compared to Logistic Regression (98.57%), indicating a better balance between precision and recall.
