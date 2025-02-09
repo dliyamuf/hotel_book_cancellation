@@ -206,13 +206,13 @@ Feature Encoding is an process to convert categorical variables into numerical v
 We select top 20 features based on Pearson correlation value.
 
 <p align="center">
-  <img width="400" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/topfeatures.png">
+  <img width="400" height="1000" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/topfeatures.png">
 </p>
 
 We also visualize heatmap based on Pearson correlation.
 
 <p align="center">
-  <img width="2000" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
+  <img width="1800" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
 </p>
 
 Drop features with correlation >0.7. Between **MarketSegment** and **DistributionChannel**, we choose **DistributionChannel** it has more correlation with **IsCanceled** feature.
