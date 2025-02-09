@@ -125,15 +125,77 @@ did the customer checked-out of the
 hotel.
 
 We add column **IsResort** in both dataset. For dataset 1, the value is 1 and the other is 0. Then we combine those dataset.
-(gambar info)
+
+<p align="center">
+  <img width="150" height="600" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/datainfo.png">
+</p>
+
 There are 119390 rows and 32 columns contains: float64(2), int64(17), and object(13) data types.
 ### **Feature Engineering**
 We change datetype of **Children** and make another column name **Arrival**, datetime of customer's arrival (YYYY-MM-DD) based on columns **ArrivalDateYear, ArrivalDateMonth**, and **ArrivalDateDayOfMonth**.
 ### **Exploratory Data Analysis**
 **Univariate Analysis**
+
 <p align="center">
-  <img width="460" height="300" src="https://picsum.photos/460/300">
+  <img width="450" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate1.png">
 </p>
+
+From pie chart above, we saw >60% of dataset is not canceled by customer.
+
+<p align="center">
+  <img width="450" height="360" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate2.png">
+</p>
+
+Observations:
+- The majority of customers is two adult and percentage of underage person is minimum, with more than 75% is transient customer (not a part of group, contract or other transient party).
+- More than 80% Customer's deposit type is no deposit.
+- More than 60% of dataset is an customer of city hotel.
+- The majority of booking distribution is delivered by travel agent/tour operators and market segmentation is also delivered by online travel agent.
+
+**Multivariate Analysis**
+
+<p align="center">
+  <img width="450" height="360" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi1.png">
+</p>
+
+Observations:
+- The most canceled booking is by transient customer which is has the most number of booked.
+- The most booking channel and market segment of customer is travel agent with the most canceled booking.
+- Groups market segment has most canceled booking based on proportion.
+- All of Non-refund deposit type is canceled booking.
+
+<p align="center">
+  <img width="450" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi2.png">
+</p>
+
+Observations:
+- Both canceled and non-canceled bookings increase during certain periods (e.g., mid-2016, late 2016, and mid-2017).These peaks likely correspond to high-travel seasons (e.g., holidays or vacation periods).
+- The number of cancellations generally follows the pattern of total bookings.
+Higher booking periods also have higher cancellations, which suggests that during peak seasons, people make more reservations but also cancel more frequently.
+- Some months show spikes in cancellations (e.g., early 2016, late 2016, and mid-2017), which may indicate factors such as policy changes, pricing adjustments, or market disruptions.
+
+<p align="center">
+  <img width="300" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi3.png">
+</p>
+
+Observation:
+- The current status is not influenced by status of previous booking (canceled or not canceled).
+
+<p align="center">
+  <img width="300" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi4.png">
+</p>
+
+Observations:
+- The majority of room type booked by customer is D. It also has a high number of cancellations, indicating that this room type might be more prone to cancellations.
+- Some room types appear more in the assigned than the reserved category (e.g., 'E' and 'G'). A potential cause for cancellations could be room assignment mismatches—customers may cancel if they do not get the room they originally reserved.
+
+<p align="center">
+  <img width="300" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi6.png">
+</p>
+
+Observations:
+- Hotel with 0 car parking space most likely canceled by customers.
+- Hotel with 0 special requests (e.g. twin bed or high floor) most likely canceled by customers.
 
 ## **DATA PREPARATION**
 ### **Feature Encoding and One-hot Encoding**
@@ -141,10 +203,19 @@ Feature Encoding is an process to convert categorical variables into numerical v
 [Antonio et al, (2019)](http://dx.doi.org/10.18089/tms.2017.13203) shows distribution of **Meal, AssignedRoomType**, and **Country** is different between canceled and not-canceled bookings. We make one-hot encoding based on **Meal** and **AssignedRoomType** categorical features because the large amount of variables of **Country**. Also, we make **MarketSegment, DistributionChannel, ReservedRoomType, CustomerType, DepositType, Agent, Company, Country, and ReservationStatus** feature encoded
 ### **Feature Selection**
 We select top 20 features based on Pearson correlation value.
-(gambar pearson corr)
+
+<p align="center">
+  <img width="150" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/topfeatures.png">
+</p>
+
 We also visualize heatmap based on Pearson correlation.
-(gambar heatmap)
+
+<p align="center">
+  <img width="750" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
+</p>
+
 Drop features with correlation >0.7. Between **MarketSegment** and **DistributionChannel**, we choose **DistributionChannel** it has more correlation with **IsCanceled** feature.
+
 ### **Data Splitting**
 We choose 70:30 for training and testing set. Train set is used for train the model and test set is used for model evaluation.
 ### **Standarization**
@@ -190,17 +261,25 @@ Based on those components of confusion matrix, we can calculate performance scor
 - Precision: measures proportion of positive prediction that are actually correct.
 - F1-score: metric to balance both recall and precision score.
 
-(cm of knn)
+<p align="center">
+  <img width="300" height="300" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_knn.png">
+</p>
 
-(cm of lr)
+<p align="center">
+  <img width="300" height="300" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_lr.png">
+</p>
 
+Observations:
 - TP for both algorithms is identical (51.90%) and TN for KNN algorithm is slightly better (48.04%) than Logistic Regression (46.75%).
 - FP for Logistic Regression algorithm (0.00%) is smaller than KNN (0.001%), but the FN is bigger (1.34% versus 0.06%). It is means that Logistic Regression algorithm tend to misclassified canceled booking as not canceled booking which can be dangerous.
 
 Comparison between KNN and Logistic Regression performance.
 
-(table)
+<p align="center">
+  <img width="750" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/comparison.png">
+</p>
 
+Observations:
 - KNN has better recall (99.88%) than Logistic Regression (97.19%), meaning it correctly identifies more high-risk cases.
 - Logistic Regression has perfect precision (100%), meaning when it predicts high risk, it's always correct, but it misclassifies more actual high-risk cases as low risk.
 - F1-score is slightly higher for KNN (99.93%) compared to Logistic Regression (98.57%), indicating a better balance between precision and recall.
