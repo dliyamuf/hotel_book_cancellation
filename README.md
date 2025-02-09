@@ -124,26 +124,30 @@ when was the booking canceled or when
 did the customer checked-out of the
 hotel.
 
-We add column **IsResort** in both dataset. For dataset 1, the value is 1 and the other is 0. Then we combine those dataset.
+Add column **IsResort** in both dataset. For dataset 1, the value is 1 and the other is 0. Then we combine those dataset.
 
 <p align="center">
-  <img width="300" height="600" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/datainfo.png">
+  <img width="300" height="600" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/datainfo.png">
 </p>
 
 There are 119390 rows and 32 columns contains: float64(2), int64(17), and object(13) data types.
-### **Feature Engineering**
-We change datetype of **Children** and make another column name **Arrival**, datetime of customer's arrival (YYYY-MM-DD) based on columns **ArrivalDateYear, ArrivalDateMonth**, and **ArrivalDateDayOfMonth**.
+
+### **Data Condition**
+- There are 488 missing values in **Country** column and 4 missing values in **Children** column.
+- There are 40119 rows of duplicated data. 
+- There is extreme outlier in **ADR** column.
+
 ### **Exploratory Data Analysis**
 **Univariate Analysis**
 
 <p align="center">
-  <img width="1350" height="400" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate1.png">
+  <img width="1350" height="400" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/univariate1.png">
 </p>
 
-From pie chart above, we saw >60% of dataset is not canceled by customer.
+From pie chart above, the majority of dataset is not canceled by customer.
 
 <p align="center">
-  <img width="1350" height="1040" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate2.png">
+  <img width="1350" height="1040" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/univariate2.png">
 </p>
 
 Observations:
@@ -155,7 +159,7 @@ Observations:
 **Multivariate Analysis**
 
 <p align="center">
-  <img width="1350" height="1040" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi1.png">
+  <img width="1350" height="1040" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/multi1.png">
 </p>
 
 Observations:
@@ -165,7 +169,7 @@ Observations:
 - All of Non-refund deposit type is canceled booking.
 
 <p align="center">
-  <img width="1350" height="400" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi2.png">
+  <img width="1350" height="400" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/multi2.png">
 </p>
 
 Observations:
@@ -175,14 +179,14 @@ Higher booking periods also have higher cancellations, which suggests that durin
 - Some months show spikes in cancellations (e.g., early 2016, late 2016, and mid-2017), which may indicate factors such as policy changes, pricing adjustments, or market disruptions.
 
 <p align="center">
-  <img width="1350" height="640" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi3.png">
+  <img width="1350" height="640" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/multi3.png">
 </p>
 
 Observation:
 - The current status is not influenced by status of previous booking (canceled or not canceled).
 
 <p align="center">
-  <img width="1350" height="640" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi4.png">
+  <img width="1350" height="640" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/multi4.png">
 </p>
 
 Observations:
@@ -190,7 +194,7 @@ Observations:
 - Some room types appear more in the assigned than the reserved category (e.g., 'E' and 'G'). A potential cause for cancellations could be room assignment mismatches—customers may cancel if they do not get the room they originally reserved.
 
 <p align="center">
-  <img width="1350" height="640" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi6.png">
+  <img width="1350" height="640" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/multi6.png">
 </p>
 
 Observations:
@@ -198,34 +202,53 @@ Observations:
 - Hotel with 0 special requests (e.g. twin bed or high floor) most likely canceled by customers.
 
 ## **DATA PREPARATION**
+### **Missing Values**
+Drop some missing values in **Country** and **Children** features because it's <10% of rows in dataset.
+
+### **Duplicated Data**
+There are 40119 rows of duplicated data. The duplicated data is represent real-world entities of hotel transaction, so drop its duplicated data might cause missing information.
+
+### **Outlier**
+Column that might have outlier is **ADR**, that is average daily rates of hotel's rooms.
+
+<p align="center">
+  <img width="450" height="450" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/adr.png">
+</p>
+
+There is extreme outlier value of **ADR**. Keep it because it might contains luxury bookings information.
+### **Feature Engineering**
+Change datetype of **Children** and make another column name **Arrival**, datetime of customer's arrival (YYYY-MM-DD) based on columns **ArrivalDateYear, ArrivalDateMonth**, and **ArrivalDateDayOfMonth**.
+
 ### **Feature Encoding and One-hot Encoding**
 Feature Encoding is an process to convert categorical variables into numerical variables for machine learning modeling. Therefore, one-hot encoding is an process to converting categorical variables into binary (1 or 0) format.
 
-[Antonio et al, (2019)](http://dx.doi.org/10.18089/tms.2017.13203) shows distribution of **Meal, AssignedRoomType**, and **Country** is different between canceled and not-canceled bookings. We make one-hot encoding based on **Meal** and **AssignedRoomType** categorical features because the large amount of variables of **Country**. Also, we make **MarketSegment, DistributionChannel, ReservedRoomType, CustomerType, DepositType, Agent, Company, Country, and ReservationStatus** feature encoded
+[Antonio et al, (2019)](http://dx.doi.org/10.18089/tms.2017.13203) shows distribution of **Meal, AssignedRoomType**, and **Country** is different between canceled and not-canceled bookings. Make one-hot encoding based on **Meal** and **AssignedRoomType** categorical features because the large amount of variables of **Country**. Therefore, **MarketSegment, DistributionChannel, ReservedRoomType, CustomerType, DepositType, Agent, Company, Country, and ReservationStatus** features are encoded.
 ### **Feature Selection**
-We select top 20 features based on Pearson correlation value.
+Select top 20 features based on Pearson correlation value.
 
 <p align="center">
-  <img width="300" height="600" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/topfeatures.png">
+  <img width="300" height="600" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/topfeatures.png">
 </p>
 
-We also visualize heatmap based on Pearson correlation.
+Visualize heatmap based on Pearson correlation.
 
 <p align="center">
-  <img width="1350" height="1200" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
+  <img width="1350" height="1200" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/heatmap.png">
 </p>
 
 Drop features with correlation >0.7. Between **MarketSegment** and **DistributionChannel**, we choose **DistributionChannel** it has more correlation with **IsCanceled** feature.
 
 ### **Data Splitting**
-We choose 70:30 for training and testing set. Train set is used for train the model and test set is used for model evaluation.
+Choose 70:30 for training and testing set. Train set is used for train the model and test set is used for model evaluation.
 ### **Standarization**
-We use Standard Scaler because models that rely on distance calculations (KNN, K-Means, SVM, PCA) can be biased if features have different magnitudes. StandardScaler subtracts the mean and scales to unit variance. This helps gradient-based models (Logistic Regression, Neural Networks) converge faster.
+Use Standard Scaler because models that rely on distance calculations (KNN, K-Means, SVM, PCA) can be biased if features have different magnitudes. StandardScaler subtracts the mean and scales to unit variance. This helps gradient-based models (Logistic Regression, Neural Networks) converge faster.
 
-## **MODELING**
-We choose K-nearest neighbor and logistic regression algorithm ro predict hotel booking cancellation.
+## **MODEL DEVELOPMENT**
+Choose K-nearest neighbor and logistic regression algorithm ro predict hotel booking cancellation.
 
 **K-Nearest Neighbor**
+
+K-Nearest Neighbors (KNN) predicts a data point's class by finding the K closest points in the dataset and assigning the most common class (for classification) or averaging their values (for regression). It relies on distance metrics (e.g., Euclidean) and works best with well-scaled data but can be slow for large datasets.
 
 Pros:
 - Non-parametric & Flexible
@@ -237,7 +260,11 @@ Cons:
 - Sensitive to Feature Scaling
 - Performance drops as feature count increases (Curse of Dimensionality).
 
+The k=3 is choosen for this analysis because it provides a balance between sensitivity to local patterns and reducing noise.
+
 **Logistic Regression**
+
+Logistic Regression predicts the probability of a class using the sigmoid function, converting linear combinations of input features into values between 0 and 1. It works well for binary classification, is interpretable, but assumes a linear relationship between features and the log-odds of the outcome.
 
 Pros:
 - Works well on large datasets with many features.
@@ -249,6 +276,7 @@ Cons:
 - Not Effective for Complex Patterns
 - Sensitive to Outliers
 
+The default parameters value is choosen because it's ses L2 regularization (Ridge) by default, preventing overfitting without needing manual tuning, solver (lbfgs) works well for most datasets and ensuring convergence, and good for model baseline.
 ## **EVALUATION**
 We use confusion matrix to evaluate performance of classification model. Confusion matrix compares predicted value and actual values. The components of confusion matrix is: 
 - True Positive (TP): when model correctly predicted positive class.
@@ -263,11 +291,11 @@ Based on those components of confusion matrix, we can calculate performance scor
 - F1-score: metric to balance both recall and precision score.
 
 <p align="center">
-  <img width="450" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_knn.png">
+  <img width="450" height="450" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/cm_knn.png">
 </p>
 
 <p align="center">
-  <img width="450" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_lr.png">
+  <img width="450" height="450" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/cm_lr.png">
 </p>
 
 Observations:
@@ -277,7 +305,7 @@ Observations:
 Comparison between KNN and Logistic Regression performance.
 
 <p align="center">
-  <img width="961" height="80" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/comparison.png">
+  <img width="961" height="80" src="https://raw.githubusercontent.com/dliyamuf/hotel_book_cancellation/refs/heads/main/image/comparison.png">
 </p>
 
 Observations:
@@ -287,5 +315,5 @@ Observations:
 
 ## **CONCLUSION**
 - The number of cancellations generally follows the pattern of total bookings. Some month has spike cancellation e.g. early 2016, late 2016, and mid 2017.
-- The major factor of boking cancelation based on Pearson correlation is **ReservationStatus, IsResort, Deposit Type,** and **Lead Time**.
+- The major factor of boking cancelation based on Pearson correlation is **ReservationStatus, IsResort, Deposit Type,** and **Lead Time**. The status of reservation given by customer strongly correlated with booking cancelation. The type of hotel (city or resort) might influence customer's decision (e.g. far from downtown). Customer might consider non-deposit hotel. Customer with **LeadTime** higher more frequent to canceled booking.
 - Based on evaluation, the best model for hotel booking cancellation prediction is KNN which has better performance to prevent misclassified status of booking (canceled or not).
