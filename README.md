@@ -143,7 +143,7 @@ We change datetype of **Children** and make another column name **Arrival**, dat
 From pie chart above, we saw >60% of dataset is not canceled by customer.
 
 <p align="center">
-  <img width="450" height="360" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate2.png">
+  <img width="1350" height="1040" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/univariate2.png">
 </p>
 
 Observations:
@@ -165,7 +165,7 @@ Observations:
 - All of Non-refund deposit type is canceled booking.
 
 <p align="center">
-  <img width="450" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi2.png">
+  <img width="1350" height="400" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi2.png">
 </p>
 
 Observations:
