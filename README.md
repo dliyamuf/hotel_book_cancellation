@@ -1,5 +1,5 @@
 # **Machine Learning Project Report - Dliya Awliya Mufidah**
-## **DOMAIN KNOWLEDGE OF KNOWLEDGE**
+## **DOMAIN OF KNOWLEDGE**
 Nowadays, travelers most significantly use internet to book hotel and make an reservation ([Toh et al. 2011](https://doi.org/10.1177/1938965511418779)). Hotel bookings represent a contract between customer and the hotel. The demand of hotel bookings can influence hotel's revenue, allocation, and budgets. Hence, search for factor of bookings cancellation can prevent revenue loss and get better marketing strategy ([Antonio et al, 2019](http://dx.doi.org/10.18089/tms.2017.13203)).
 ## **BUSINESS UNDERSTANDING**
 ### **Problem Statement**
