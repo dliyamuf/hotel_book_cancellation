@@ -155,7 +155,7 @@ Observations:
 **Multivariate Analysis**
 
 <p align="center">
-  <img width="450" height="360" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi1.png">
+  <img width="1350" height="1040" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi1.png">
 </p>
 
 Observations:
@@ -175,14 +175,14 @@ Higher booking periods also have higher cancellations, which suggests that durin
 - Some months show spikes in cancellations (e.g., early 2016, late 2016, and mid-2017), which may indicate factors such as policy changes, pricing adjustments, or market disruptions.
 
 <p align="center">
-  <img width="300" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi3.png">
+  <img width="1350" height="640" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi3.png">
 </p>
 
 Observation:
 - The current status is not influenced by status of previous booking (canceled or not canceled).
 
 <p align="center">
-  <img width="300" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi4.png">
+  <img width="1350" height="640" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi4.png">
 </p>
 
 Observations:
@@ -190,7 +190,7 @@ Observations:
 - Some room types appear more in the assigned than the reserved category (e.g., 'E' and 'G'). A potential cause for cancellations could be room assignment mismatches—customers may cancel if they do not get the room they originally reserved.
 
 <p align="center">
-  <img width="300" height="150" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi6.png">
+  <img width="1350" height="640" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/multi6.png">
 </p>
 
 Observations:
@@ -199,19 +199,20 @@ Observations:
 
 ## **DATA PREPARATION**
 ### **Feature Encoding and One-hot Encoding**
-Feature Encoding is an process to convert categorical variables into numerical variables for machine learning modeling. Therefore, one-hot encoding is an process to ...
+Feature Encoding is an process to convert categorical variables into numerical variables for machine learning modeling. Therefore, one-hot encoding is an process to converting categorical variables into binary (1 or 0) format.
+
 [Antonio et al, (2019)](http://dx.doi.org/10.18089/tms.2017.13203) shows distribution of **Meal, AssignedRoomType**, and **Country** is different between canceled and not-canceled bookings. We make one-hot encoding based on **Meal** and **AssignedRoomType** categorical features because the large amount of variables of **Country**. Also, we make **MarketSegment, DistributionChannel, ReservedRoomType, CustomerType, DepositType, Agent, Company, Country, and ReservationStatus** feature encoded
 ### **Feature Selection**
 We select top 20 features based on Pearson correlation value.
 
 <p align="center">
-  <img width="150" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/topfeatures.png">
+  <img width="400" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/topfeatures.png">
 </p>
 
 We also visualize heatmap based on Pearson correlation.
 
 <p align="center">
-  <img width="750" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
+  <img width="2000" height="1350" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/heatmap.png">
 </p>
 
 Drop features with correlation >0.7. Between **MarketSegment** and **DistributionChannel**, we choose **DistributionChannel** it has more correlation with **IsCanceled** feature.
@@ -262,11 +263,11 @@ Based on those components of confusion matrix, we can calculate performance scor
 - F1-score: metric to balance both recall and precision score.
 
 <p align="center">
-  <img width="300" height="300" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_knn.png">
+  <img width="450" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_knn.png">
 </p>
 
 <p align="center">
-  <img width="300" height="300" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_lr.png">
+  <img width="450" height="450" src="https://github.com/dliyamuf/hotel_book_cancellation/blob/main/image/cm_lr.png">
 </p>
 
 Observations:
