@@ -10,7 +10,7 @@ Nowadays, travelers most significantly use internet to book hotel and make an re
 1. Identify most bookings cancellation date.
 2. Analysis of bookings cancellation's influence factor.
 3. Investigate accuration of machine learning models prediction of booking cancellation and choose the best model.
-### **Solution statement**
+### **Solution Statement**
 1. Use correlation of arrival date and book cancellation data.
 2. Explore features based on EDA, mutual information, and Pearson correlation?
 3. Use 5 difference classification machine learning algorithm (Logistic Regresion, KNN, Random Forest, Gradient Boosting and XGBoost) with accuracy >95%. Algorithm selection is based on higher on accuracy and recall score.
